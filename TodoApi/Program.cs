@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 using TodoApi.Models;
 
@@ -43,7 +45,16 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<JwtTokenService>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(Options =>
+{
+    Options.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Version = "v1" });
+    Options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme { });
+    Options.AddSecurityRequirement(new OpenApiSecurityRequirement { });
+});
+
+
 builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 
@@ -53,7 +64,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(Options =>
+    {
+        Options.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");
+        Options.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();
