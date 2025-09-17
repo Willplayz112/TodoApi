@@ -143,7 +143,7 @@ public class TodoItemsController : ControllerBase
             _logger.LogError("Todo item doesnt exist");
             return NotFound();
         }
-        _logger.LogInformation("Todo saved");
+        _logger.LogInformation("Todo saved id changed: {Id}", id);
         return Ok();
     }
     // </snippet_Update>
@@ -164,11 +164,12 @@ public class TodoItemsController : ControllerBase
         _logger.LogInformation("New TodoItem received");
         _context.TodoItems.Add(todoItem);
         await _context.SaveChangesAsync();
-        _logger.LogInformation("TodoItem added");
+        _logger.LogInformation("TodoItem added with the name {Name}", todoItem.Name);
         return CreatedAtAction(
             nameof(GetTodoItem),
             new { id = todoItem.Id },
-            ItemToDTO(todoItem));
+            ItemToDTO(todoItem)
+        );
     }
     // </snippet_Create>
 
@@ -180,13 +181,13 @@ public class TodoItemsController : ControllerBase
         var todoItem = await _context.TodoItems.FindAsync(id);
         if (todoItem == null)
         {
-            _logger.LogError("Id doesnt exist");
+            _logger.LogError("Id doesnt exist. Id requested {Id}", id);
             return NotFound();
         }
 
         _context.TodoItems.Remove(todoItem);
         await _context.SaveChangesAsync();
-        _logger.LogWarning("Deleted TodoItem");
+        _logger.LogWarning("Deleted TodoItem {Id}", id);
         return Ok();
     }
 
