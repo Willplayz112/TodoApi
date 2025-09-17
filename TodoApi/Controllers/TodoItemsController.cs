@@ -81,7 +81,7 @@ public class TodoItemsController : ControllerBase
 
         var totalTodos = await query.CountAsync();
 
-        Response.Headers.Add("X-Total-Todos", totalTodos.ToString());
+        Response.Headers.Append("X-Total-Todos", totalTodos.ToString());
 
         var items = await query
             .Skip((page - 1) * pageSize)
