@@ -4,12 +4,36 @@
 @page=1
 @pageSize=20
 @IsCompleted=true
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc1ODExMTEwMywiaXNzIjoiVG9kb0FwcCIsImF1ZCI6IlRvZG9Vc2VycyJ9.K0XOx3xxmiY6P5If0J0AANV7C0seTDnfVrs_W0rRMuw
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc1ODExMjQ5OSwiaXNzIjoiVG9kb0FwcCIsImF1ZCI6IlRvZG9Vc2VycyJ9.ESCB34XIVHcRrJS3sy2lfnAbkoKxnxDrG6ocxTIoXPI
+
+
+// USE THIS ONE FIRST TO GET A TOKEN
+// THEN REPLACE THE TOKEN IN THE CONFIG ABOVE
+// Either use admin or user,
+// Username: admin
+// Password: admin123
+// Or use the user,
+// Username: user
+// Password: user123
+###
+
+POST {{TodoApi_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  "Username": "admin",
+  "Password": "admin123"
+}
+
+###
+
+
 
 // Requests
 // Change a todo via a id use GET first to find id
 PUT {{TodoApi_HostAddress}}/api/todoitems/{{id}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "id": {{id}},
@@ -22,6 +46,7 @@ Content-Type: application/json
 
 // Delete a todo with id
 DELETE {{TodoApi_HostAddress}}/api/todoitems/{{id}}
+Authorization: Bearer {{token}}
 
 ###
 
@@ -46,17 +71,6 @@ Authorization: Bearer {{token}}
 {
   "name": "Test5billion",
   "IsCompleted": false
-}
-
-###
-
-
-POST {{TodoApi_HostAddress}}/auth/login
-Content-Type: application/json
-
-{
-  "Username": "admin",
-  "Password": "admin123"
 }
 
 ###
