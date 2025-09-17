@@ -1,16 +1,15 @@
 # A Todo list app in ASP.NET core In-Memory
 
-## Overview
-This is an API based in memory Todo list app that will only track when it is running similer to a Redis database
-You just need the Microsoft ASP.Net core JWT auth NuGet package
+## Overview  
+This is an API based in memory Todo list app that will only track when it is running similer to a Redis database You just need the Microsoft ASP.Net core JWT auth NuGet package
 
-> ### Further note on documentation:
-> Using the .http file, theres more notes in there to help set it up
+> ### Further note on documentation:  
+> Using the .http file, theres more notes in there to help set it up  
 
 ---
 
-## GET /api/todoitems/
-You can add /[id] to get a specific todo item which either returns all todoitems or just the one with that id
+## GET /api/todoitems/  
+You can add /[id] to get a specific todo item which either returns all todoitems or just the one with that id  
 
 ```json
 
@@ -24,11 +23,11 @@ You can add /[id] to get a specific todo item which either returns all todoitems
 
 ```
 ---
-## POST /api/todoitems/
-Add a todo item to the in-memory database
-Adding an item does need Authorization which you can get from another POST request, see {{PLACEHOLDER}}
-You can change the name to anything inside the quotes 
-IsCompleted is bool value either true or false
+## POST /api/todoitems/  
+Add a todo item to the in-memory database  
+Adding an item does need Authorization which you can get from another POST request, see {{PLACEHOLDER}}  
+You can change the name to anything inside the quotes  
+IsCompleted is bool value either true or false  
 ```json
 
 {
@@ -38,7 +37,7 @@ IsCompleted is bool value either true or false
 
 ```
 ---
-## DELETE /api/todoitems/{{id}}
+## DELETE /api/todoitems/{{id}}  
 Delete a todo item using the id from the in-memory database
 Does require the Authorization header which you can get from another POST request, see {{PLACEHOLDER}}
 ---
@@ -58,17 +57,14 @@ Change a todo item from to complete to completed or vice versa
 ---
 
 ## POST /auth/login
-This is a mandatory to do anything usful on the api
-===
+**This is a mandatory to do anything usful on the api**
 the default user and passwords are as follows
 Admin to do all things
-Username: admin.
-Password: admin123.
-User to view.
-Username: user.
-Password: user123.
-
+Username: admin  
+Password: admin123  
+User to view  
+Username: user  
+Password: user123  
 
 ## Things to change
 Add more restrictions for example all end points need Authorization 
-
