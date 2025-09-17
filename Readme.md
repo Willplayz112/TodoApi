@@ -62,12 +62,13 @@ This is a mandatory to do anything usful on the api
 ===
 the default user and passwords are as follows
 Admin to do all things
-Username: admin
-Password: admin123
-User to view
-Username: user
-Password: user123
+Username: admin.
+Password: admin123.
+User to view.
+Username: user.
+Password: user123.
 
 
 ## Things to change
 Add more restrictions for example all end points need Authorization 
+
