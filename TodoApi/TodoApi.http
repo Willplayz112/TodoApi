@@ -1,0 +1,61 @@
+// Config
+@TodoApi_HostAddress = https://localhost:7083
+@id=1
+@page=1
+@pageSize=20
+@IsCompleted=true
+
+// Requests
+// Change a todo via a id use GET first to find id
+PUT {{TodoApi_HostAddress}}/api/todoitems/{{id}}
+Content-Type: application/json
+
+{
+  "id": {{id}},
+  "name": "Test5billion",
+  "IsCompleted": true
+}
+
+###
+
+
+// Delete a todo with id
+DELETE {{TodoApi_HostAddress}}/api/todoitems/{{id}}
+
+###
+
+
+// Possible flags are 
+// page       : any number above 0               : page={{page}}
+// pageSize   : amount of results from each page : pageSize={{pageSize}}
+// isCompleted: either null,false or true        : isCompleted={{isCompleted}}
+GET {{TodoApi_HostAddress}}/api/todoitems/
+
+###
+
+
+// Make a new todo
+// name        : Name the todo                         : Any value
+// IsCompleted : Has the do been completed             : true or false
+// Token       : Auth header for admin needed actions  : Get the value using the post request to /auth/login
+POST {{TodoApi_HostAddress}}/api/todoitems
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImlzcyI6IlRvZG9BcHAiLCJhdWQiOiJUb2RvVXNlcnMifQ.
+
+{
+  "name": "Test5billion",
+  "IsCompleted": false
+}
+
+###
+
+
+POST {{TodoApi_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  "Username": "admin",
+  "Password": "admin123"
+}
+
+###
