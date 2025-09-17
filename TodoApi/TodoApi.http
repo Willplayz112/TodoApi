@@ -4,6 +4,7 @@
 @page=1
 @pageSize=20
 @IsCompleted=true
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc1ODExMTEwMywiaXNzIjoiVG9kb0FwcCIsImF1ZCI6IlRvZG9Vc2VycyJ9.K0XOx3xxmiY6P5If0J0AANV7C0seTDnfVrs_W0rRMuw
 
 // Requests
 // Change a todo via a id use GET first to find id
@@ -40,7 +41,7 @@ GET {{TodoApi_HostAddress}}/api/todoitems/
 // Token       : Auth header for admin needed actions  : Get the value using the post request to /auth/login
 POST {{TodoApi_HostAddress}}/api/todoitems
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImlzcyI6IlRvZG9BcHAiLCJhdWQiOiJUb2RvVXNlcnMifQ.
+Authorization: Bearer {{token}}
 
 {
   "name": "Test5billion",

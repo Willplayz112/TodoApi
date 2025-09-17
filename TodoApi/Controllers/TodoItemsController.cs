@@ -13,6 +13,7 @@ namespace TodoApi.Controllers;
 
 [ApiController]
 [Route("auth")]
+[AllowAnonymous]
 public class AuthController : ControllerBase
 {
     private readonly JwtTokenService _jwtService;

@@ -30,7 +30,9 @@ public class JwtTokenService
         var token = new JwtSecurityToken(
             issuer: _config["Jwt:Issuer"],
             audience: _config["Jwt:Audience"],
-            claims: claims);
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(_config["Jwt:ExpiryMinutes"])),
+            signingCredentials: creds);
            return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }
