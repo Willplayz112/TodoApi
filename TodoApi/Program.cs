@@ -50,8 +50,29 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(Options =>
 {
     Options.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo API", Version = "v1" });
-    Options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme { });
-    Options.AddSecurityRequirement(new OpenApiSecurityRequirement { });
+    Options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter 'Bearer' followed by your JWT token in the text box below"
+    });
+    Options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
 
 
@@ -68,7 +89,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(Options =>
     {
         Options.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");
-        Options.RoutePrefix = string.Empty;
+        Options.RoutePrefix = "swagger";
     });
 }
 
