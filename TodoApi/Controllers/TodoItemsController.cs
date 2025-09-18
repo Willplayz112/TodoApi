@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
+//using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+//using Microsoft.IdentityModel.Tokens;
+//using System.IdentityModel.Tokens.Jwt;
+//using System.Security.Claims;
+//using System.Text;
 using TodoApi.Models;
 
 
@@ -38,6 +38,7 @@ public class AuthController : ControllerBase
         }
 
         var token = _jwtService.GenerateToken(user);
+        _logger.LogInformation("Token created and sent");
         return Ok(new { token });
     }
 }
@@ -88,6 +89,7 @@ public class TodoItemsController : ControllerBase
             .Take(pageSize)
             .Select(item => ItemToDTO(item))
             .ToListAsync();
+        _logger.LogInformation("Todo items sent to user");
         return Ok(items);
     }
 
@@ -97,12 +99,11 @@ public class TodoItemsController : ControllerBase
     public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
     {
 
-
-
         var todoItem = await _context.TodoItems.FindAsync(id);
 
         if (todoItem == null)
         {
+            _logger.LogError("Could not find requested todoitem");
             return NotFound();
         }
 
