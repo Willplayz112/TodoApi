@@ -34,12 +34,14 @@ IsCompleted is bool value either true or false
   "name": "String",
   "IsCompleted": false
 }
-
 ```
+
 ---
-## DELETE /api/todoitems/{{id}}<br/>
-Delete a todo item using the id from the in-memory database<br/>
-Does require the Authorization header which you can get from another POST request, see {{PLACEHOLDER}}<br/>
+
+## DELETE /api/todoitems/{{id}}
+Delete a todo item using the id from the in-memory database  
+Does require the Authorization header which you can get from another POST request, see {{PLACEHOLDER}}
+
 ---
 
 ## PUT /api/todoitems/{{id}}
@@ -68,6 +70,7 @@ Password: user123
 
 ## Things to change
 Add more restrictions for example all end points need Authorization  
+
 
 
 
