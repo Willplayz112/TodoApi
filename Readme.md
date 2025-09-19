@@ -34,12 +34,14 @@ IsCompleted is bool value either true or false
   "name": "String",
   "IsCompleted": false
 }
-
 ```
+
 ---
-## DELETE /api/todoitems/{{id}}  
-Delete a todo item using the id from the in-memory database
+
+## DELETE /api/todoitems/{{id}}
+Delete a todo item using the id from the in-memory database  
 Does require the Authorization header which you can get from another POST request, see {{PLACEHOLDER}}
+
 ---
 
 ## PUT /api/todoitems/{{id}}
@@ -57,9 +59,9 @@ Change a todo item from to complete to completed or vice versa
 ---
 
 ## POST /auth/login
-**This is a mandatory to do anything usful on the api**
-the default user and passwords are as follows
-Admin to do all things
+**This is a mandatory to do anything usful on the api**  
+the default user and passwords are as follows  
+Admin to do all things  
 Username: admin  
 Password: admin123  
 User to view  
@@ -67,4 +69,8 @@ Username: user
 Password: user123  
 
 ## Things to change
-Add more restrictions for example all end points need Authorization 
+Add more restrictions for example all end points need Authorization  
+
+
+
+
