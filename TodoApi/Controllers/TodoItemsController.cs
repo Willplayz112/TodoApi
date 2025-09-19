@@ -46,7 +46,8 @@ public class AuthController : ControllerBase
 
 [Route("api/[controller]")]
 [ApiController]
-//[Authorize]
+[Authorize(Roles = "Admin,Users")]
+
 
 public class TodoItemsController : ControllerBase
 {
